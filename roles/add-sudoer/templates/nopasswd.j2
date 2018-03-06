@@ -2,5 +2,5 @@
 ## Allows people in the following groups to run all commands
 
 {% for group in sudoers_groups %}
-%{{group}} ALL=(ALL) NOPASSWD:ALL
+{{group}} ALL=(ALL) NOPASSWD:ALL
 {% endfor %}

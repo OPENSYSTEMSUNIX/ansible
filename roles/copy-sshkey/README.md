@@ -3,4 +3,4 @@
 | variable | value|
 |----------|------|
 | `key_user:` | |
-| `key_path:` | /home/ansiblesvc/.ssh/id_rsa.pub |
+| `key_string:` | "string containing key" |
