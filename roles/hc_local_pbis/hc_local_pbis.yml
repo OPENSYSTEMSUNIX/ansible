@@ -1,0 +1,7 @@
+---
+
+# file: hc_local_pbis.yml
+ - hosts: devops
+   become: yes
+   roles:
+       - pbis

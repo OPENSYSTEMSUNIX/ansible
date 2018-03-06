@@ -1,0 +1,25 @@
+---
+# tasks file for pbis
+  - name: Redhat | yum install pbis-open
+    yum:
+      name: pbis-open
+      state: latest
+      disable_gpg_check: yes
+
+  - name: Check the Domain status
+    shell: /opt/pbis/bin/get-status | grep -q "{{ domain_netbios }}"
+    ignore_errors: yes
+    register: domain_status
+
+  - name: Join the machine if it is not already on the domain.
+    command: /usr/bin/domainjoin-cli join {{ domain_fqdn }} {{ domain_user }} {{ domain_pass }}
+    when: domain_status.rc != 0
+    notify:
+      - config pbis shell
+      - config pbis domain
+      - config pbis homedirtemplate
+      - config pbis userdomainprefix
+      - config pbis SpaceReplacement
+
+  - name: config pbis requiremembershipof
+    command: /opt/pbis/bin/config RequireMembershipOf {{ require_membership_of }}

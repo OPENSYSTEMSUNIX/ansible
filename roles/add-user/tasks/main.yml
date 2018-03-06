@@ -1,0 +1,44 @@
+  - name: create nessxsvc account
+    user: 
+      name: '{{user}}'
+      comment: '{{comment}}'
+      uid: '{{uid}}'
+      state: present
+
+  - name: check if group exists
+    shell: grep -q '{{optgroup}}' /etc/group
+    ignore_errors: True
+    register: etc_groups
+
+  - name: add secondary groups to user
+    user: 
+      name: '{{user}}' 
+      groups: '{{optgroup}}'
+      append: yes
+    when: etc_groups.rc == 0
+    notify: chown
+
+  - name: copy ssh key
+    authorized_key:
+      user: '{{user}}'
+      state: present
+      key: '{{sshkey}}'
+
+  - name: ensure sudoers dropin exists
+    file:
+      path: '{{sudoers_dropin_dir}}'
+      state: directory
+      mode: 0750
+
+  - name: enable passwordless sudo
+    template:
+      src: 'nopasswd.j2'
+      dest: '{{sudoers_dropin_dir}}/{{user}}'
+      mode: 0440
+      validate: '/usr/sbin/visudo -cf %s'
+
+  - name: 'ensure sudoers dropin directory is #includedir-ed'
+    lineinfile:
+      dest: '{{sudoers_cfg_file}}'
+      regexp: '^#includedir\s+{{sudoers_dropin_dir}}'
+      line: '#includedir {{sudoers_dropin_dir}}'
