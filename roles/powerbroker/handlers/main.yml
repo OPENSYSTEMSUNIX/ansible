@@ -2,30 +2,25 @@
 # handlers file for pbis
   - name: config pbis domain
     command: /opt/pbis/bin/config AssumeDefaultDomain {{ assume_default_domain }}
-    ignore_errors: yes
     register: config_domain
-    failed_when: config_domain >= 2
+    failed_when: config_domain.rc == 1
 
   - name: config pbis shell
     command: /opt/pbis/bin/config LoginShellTemplate {{ login_shell_template }}
-    ignore_errors: yes
     register: config_shell
-    failed_when: config_shell >= 2
+    failed_when: config_shell.rc == 1
 
   - name: config pbis homedirtemplate
     command: /opt/pbis/bin/config HomeDirTemplate {{ homedir_template }}
-    ignore_errors: yes
     register: config_home
-    failed_when: config_home >= 2
+    failed_when: config_home.rc == 1
 
   - name: config pbis userdomainprefix
     command: /opt/pbis/bin/config UserDomainPrefix {{ domain_netbios }}
-    ignore_errors: yes
     register: config_prefix
-    failed_when: config_prefix >= 2
+    failed_when: config_prefix.rc == 1
 
   - name: config pbis SpaceReplacement
     command: /opt/pbis/bin/config SpaceReplacement {{ space_replacement }}
-    ignore_errors: yes
     register: config_space_r
-    failed_when: config_space_r >= 2
+    failed_when: config_space_r.rc == 1

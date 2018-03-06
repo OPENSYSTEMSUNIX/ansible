@@ -1,0 +1,21 @@
+- name: ensure sudoers dropin exists
+  become: yes
+  file:
+    path: '{{sudoers_dropin_dir}}'
+    state: directory
+    mode: 0750
+
+- name: enable passwordless sudo
+  become: yes
+  template:
+    src: 'nopasswd.j2'
+    dest: '{{sudoers_dropin_dir}}/{{sudoers_file}}'
+    mode: 0440
+    validate: '/usr/sbin/visudo -cf %s'
+
+- name: 'ensure sudoers dropin directory is #includedir-ed'
+  become: yes
+  lineinfile:
+    dest: '{{sudoers_cfg_file}}'
+    regexp: '^#includedir\s+{{sudoers_dropin_dir}}'
+    line: '#includedir {{sudoers_dropin_dir}}'

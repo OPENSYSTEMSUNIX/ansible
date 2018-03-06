@@ -4,8 +4,8 @@
 # Domain settings / Account
 domain_fqdn: harlandclarke.local
 domain_netbios: HARLANDCLARKE
-domain_user: a058384-aa
-domain_pass: !vault |
+username: a058384-aa
+password: !vault |
           $ANSIBLE_VAULT;1.1;AES256
           37626437626232323138326465326134616133353537333537636337643331666533323031383332
           6564393730383466303937346436306164643930373864300a323662316435356339626332626662
@@ -19,3 +19,4 @@ login_shell_template: "/bin/bash"
 assume_default_domain: "True"
 require_membership_of: '"HARLANDCLARKE\\aix_admins" "HARLANDCLARKE\\aix_admin_val"'
 space_replacement: "_"
+ou: "Unix"

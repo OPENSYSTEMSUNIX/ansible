@@ -12,7 +12,7 @@
     register: domain_status
 
   - name: Join the machine if it is not already on the domain.
-    command: /usr/bin/domainjoin-cli join {{ domain_fqdn }} {{ domain_user }} {{ domain_pass }}
+    command: /usr/bin/domainjoin-cli join {{ domain_fqdn }} --ou {{ ou }} {{ username }} {{ password }}
     when: domain_status.rc != 0
     notify:
       - config pbis shell
