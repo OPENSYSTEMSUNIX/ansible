@@ -1,0 +1,5 @@
+  - name: copy ssh key
+    authorized_key:
+      user: '{{ key_user }}'
+      state: present
+      key: "{{ lookup('file', '{{ key_path }}') }}"

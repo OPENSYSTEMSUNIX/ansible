@@ -1,0 +1,20 @@
+  - name: create user account
+    user: 
+      name: '{{ user }}'
+      comment: '{{ comment }}'
+      uid: '{{ uid }}'
+      state: present
+
+  - name: check if group exists
+    shell: grep -q '{{ optgroup }}' /etc/group
+    ignore_errors: True
+    register: etc_groups
+
+  - name: add secondary groups to user
+    user: 
+      name: '{{ user }}' 
+      groups: '{{ optgroup }}'
+      append: yes
+    when: etc_groups.rc == 0
+    notify: chown
+ 
