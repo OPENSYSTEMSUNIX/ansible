@@ -19,7 +19,7 @@ Ansible playbook for deploying PowerBroker Identity Services (PBIS) Open Edition
 | `pb_assume_default_domain:` | Sets the domain as default so users can login without DOMAIN\\ |
 | `pb_require_membership_of:` | List of domain groups for allowed access |
 | `pb_space_replacement:` | Configure the character to replace spaces |
-| `pb_ou` | Name of the OU to store the computer object |
+| `pb_ou:` | Name of the OU to store the computer object |
 | `pb_config_path:` | /tmp |
 | `pb_config_file:` | pb_dump |
 
