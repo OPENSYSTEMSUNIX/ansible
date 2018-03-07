@@ -5,4 +5,4 @@
   sudoers_cfg_file: /etc/sudoers
   sudoers_dropin_dir: /etc/sudoers.d
   uid: 5000
-  sshkey: "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAvcVzkLdhbo2J5J/g4/zmwRkn2Pr6uXkUH66E7nTRDlAm+m9ZTrV/1eoKMNEgoAcirdijGrdJliN1jjnuxW4DAtKADSVpKM0lEx77jfu46EVZWm+Ks3lQ+txJ4lo+Ehb9/sbmq05Ri0eNXL9Oj41qjLqmsjxcIGGExvj79R9ajbZRToc9FGfXVLKm2DCU2Ebgpy3iDchpaoNGuJOcKxbIWVpdM2Ex+s3z9b5a8t5wmO/yLTQu4+iD5903W84qq5Xio0+uY6U8swDVintDaHKL2fSVwfRNsNE0tjjljEr9LNrDrmj7/Gew6zPD4SDzeDmK7AfTu50jVFRY5sU3wF+nhQ== nessus-scanner@hchgrp.local"
+  sshkey: "string containing key"
