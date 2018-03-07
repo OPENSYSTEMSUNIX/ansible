@@ -1,9 +1,9 @@
 # add-user
 
-Add the nessxsvc user
+Add the user given in the user variable
 
 ### Variables
-| vaiable | vaule |
+| variable | vaule |
 |---------|-------|
 | `user:` | user to create |
 | `comment:` | user comment |
