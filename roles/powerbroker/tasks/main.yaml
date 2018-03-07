@@ -1,25 +1,20 @@
 ---
 # tasks file for pbis
-  - name: Redhat | yum install pbis-open
+  - name: install powerbroker from spacewalk
     yum:
       name: pbis-open
       state: latest
       disable_gpg_check: yes
 
-  - name: Check the Domain status
-    shell: /opt/pbis/bin/get-status | grep -q "{{ domain_netbios }}"
+  - name: check the domain status
+    shell: /opt/pbis/bin/get-status | grep -q "{{ pb_domain_netbios }}"
     ignore_errors: yes
     register: domain_status
 
-  - name: Join the machine if it is not already on the domain.
-    command: /usr/bin/domainjoin-cli join {{ domain_fqdn }} --ou {{ ou }} {{ username }} {{ password }}
+  - name: join the domain if needed
+    command: /usr/bin/domainjoin-cli join {{ pb_domain_fqdn }} --ou {{ pb_ou }} {{ pb_username }} {{ pb_password }}
     when: domain_status.rc != 0
     notify:
-      - config pbis shell
-      - config pbis domain
-      - config pbis homedirtemplate
-      - config pbis userdomainprefix
-      - config pbis SpaceReplacement
-
-  - name: config pbis requiremembershipof
-    command: /opt/pbis/bin/config RequireMembershipOf {{ require_membership_of }}
+      - copy config dump to tmp dir
+      - import powerbroker config
+      - clean up
