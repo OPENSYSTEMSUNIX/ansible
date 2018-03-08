@@ -16,7 +16,7 @@ Each role should have it's own name space to prevent over riding. The name space
 ### copy-sshkey
 | namespace |example |
 |-----------|--------|
-| `Key_` | key_user|
+| `key_` | key_user|
 
 ### powerbroker
 | namespace |example |
