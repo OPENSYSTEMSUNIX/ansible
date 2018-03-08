@@ -41,9 +41,10 @@ DomainManagerIgnoreAllTrusts false
 DomainManagerIncludeTrustsList
 DomainManagerExcludeTrustsList
 RequireMembershipOf {% for group in pb_require_membership_of  %}
-{{ group }}
+"{{ group }}"
 {%- if loop.first %} {% endif %}
 {% endfor %}
+
 Local_AcceptNTLMv1 true
 Local_HomeDirTemplate "%H/%U"
 Local_HomeDirUmask "022"

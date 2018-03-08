@@ -18,7 +18,7 @@
   - name: copy config dump to tmp dir
     template:
       src: dump.j2
-      dest: "{{ pb_config_path }}"
+      dest: "{{ pb_config_path}}/{{ pb_config_file }}"
 
   - name: import powerbroker config
     command: /opt/pbis/bin/config --file "{{ pb_config_path}}/{{ pb_config_file }}"
