@@ -31,7 +31,7 @@
     when: domain_status.rc != 0
 
   - name: set requiremembership if run again
-    command: /opt/pbis/bin/config RequireMembershipOf "{{ pb_require_membership_of | join(" ") }}"
+    command: /opt/pbis/bin/config RequireMembershipOf {{ pb_require_membership_of | join(" ") }}
     register: requiremembership
     failed_when: requiremembership.rc == 1
     when: pb_require_membership_of is defined
