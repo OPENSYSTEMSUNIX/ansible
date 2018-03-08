@@ -6,6 +6,21 @@
       state: latest
       disable_gpg_check: yes
 
+  - name: copy config dump to tmp dir
+    template:
+      src: dump.j2
+      dest: "{{ pb_config_path}}/{{ pb_config_file }}"
+
+  - name: import powerbroker config
+    command: /opt/pbis/bin/config --file "{{ pb_config_path}}/{{ pb_config_file }}"
+    register: config
+    failed_when: config.rc == 1
+
+  - name: clean up
+    file:
+      path: "{{ pb_config_path}}/{{ pb_config_file }}"
+      state: absent
+
   - name: check the domain status
     shell: /opt/pbis/bin/get-status | grep -q "{{ pb_domain_netbios }}"
     ignore_errors: yes
@@ -15,32 +30,8 @@
     command: /usr/bin/domainjoin-cli join --ou {{ pb_ou }} {{ pb_domain_fqdn }} {{ pb_username }} {{ pb_password }}
     when: domain_status.rc != 0
 
-  - name: config pbis domain
-    command: /opt/pbis/bin/config AssumeDefaultDomain {{ pb_assume_default_domain }}
-    register: config_domain
-    failed_when: config_domain.rc == 1
-    when: pb_assume_default_domain is defined
-
-  - name: config pbis shell
-    command: /opt/pbis/bin/config LoginShellTemplate {{ pb_login_shell_template }}
-    register: config_shell
-    failed_when: config_shell.rc == 1
-    when: pb_login_shell_template is defined
-
-  - name: config pbis homedirtemplate
-    command: /opt/pbis/bin/config HomeDirTemplate {{ pb_homedir_template }}
-    register: config_home
-    failed_when: config_home.rc == 1
-    when: pb_homedir_template is defined
-
-  - name: config pbis userdomainprefix
-    command: /opt/pbis/bin/config UserDomainPrefix {{ pb_domain_netbios }}
-    register: config_prefix
-    failed_when: config_prefix.rc == 1
-    when: pb_domain_netbios is defined
-
-  - name: config pbis SpaceReplacement
-    command: /opt/pbis/bin/config SpaceReplacement {{ pb_space_replacement }}
-    register: config_space_r
-    failed_when: config_space_r.rc == 1
-    when: pb_space_replacement is defined
+  - name: set requiremembership if run again
+    command: /opt/pbis/bin/config RequireMembershipOf "{{ pb_require_membership_of }}"
+    register: requiremembership
+    failed_when: requiremembership.rc == 1
+    when: pb_require_membership_of is defined
