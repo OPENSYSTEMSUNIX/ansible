@@ -12,7 +12,7 @@
     register: domain_status
 
   - name: join the domain if needed
-    command: /usr/bin/domainjoin-cli join {{ pb_domain_fqdn }} --ou {{ pb_ou }} {{ pb_username }} {{ pb_password }}
+    command: /usr/bin/domainjoin-cli join --ou {{ pb_ou }} {{ pb_domain_fqdn }} {{ pb_username }} {{ pb_password }}
     when: domain_status.rc != 0
 
   - name: copy config dump to tmp dir
