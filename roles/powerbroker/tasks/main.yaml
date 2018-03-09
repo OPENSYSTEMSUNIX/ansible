@@ -1,25 +1,37 @@
 ---
-# tasks file for pbis
-  - name: Redhat | yum install pbis-open
+# tasks file for powerbroker
+  - name: install powerbroker from spacewalk
     yum:
       name: pbis-open
       state: latest
       disable_gpg_check: yes
 
-  - name: Check the Domain status
-    shell: /opt/pbis/bin/get-status | grep -q "{{ domain_netbios }}"
+  - name: copy config dump to tmp dir
+    template:
+      src: dump.j2
+      dest: "{{ pb_config_path}}/{{ pb_config_file }}"
+
+  - name: import powerbroker config
+    command: /opt/pbis/bin/config --file "{{ pb_config_path}}/{{ pb_config_file }}"
+    register: config
+    failed_when: config.rc == 1
+
+  - name: clean up
+    file:
+      path: "{{ pb_config_path}}/{{ pb_config_file }}"
+      state: absent
+
+  - name: check the domain status
+    shell: /opt/pbis/bin/get-status | grep -q "{{ pb_domain_netbios }}"
     ignore_errors: yes
     register: domain_status
 
-  - name: Join the machine if it is not already on the domain.
-    command: /usr/bin/domainjoin-cli join {{ domain_fqdn }} --ou {{ ou }} {{ username }} {{ password }}
+  - name: join the domain if needed
+    command: /usr/bin/domainjoin-cli join --ou {{ pb_ou }} {{ pb_domain_fqdn }} {{ pb_username }} {{ pb_password }}
     when: domain_status.rc != 0
-    notify:
-      - config pbis shell
-      - config pbis domain
-      - config pbis homedirtemplate
-      - config pbis userdomainprefix
-      - config pbis SpaceReplacement
 
-  - name: config pbis requiremembershipof
-    command: /opt/pbis/bin/config RequireMembershipOf {{ require_membership_of }}
+  - name: set requiremembership if run again
+    command: /opt/pbis/bin/config RequireMembershipOf {{ pb_require_membership_of | join(" ") }}
+    register: requiremembership
+    failed_when: requiremembership.rc == 1
+    when: pb_require_membership_of is defined

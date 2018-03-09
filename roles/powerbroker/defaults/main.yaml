@@ -2,10 +2,10 @@
 # vars file for pbis
 
 # Domain settings / Account
-domain_fqdn: harlandclarke.local
-domain_netbios: HARLANDCLARKE
-username: a058384-aa
-password: !vault |
+pb_domain_fqdn: harlandclarke.local
+pb_domain_netbios: HARLANDCLARKE
+pb_username: a058384-aa
+pb_password: !vault |
           $ANSIBLE_VAULT;1.1;AES256
           37626437626232323138326465326134616133353537333537636337643331666533323031383332
           6564393730383466303937346436306164643930373864300a323662316435356339626332626662
@@ -14,9 +14,11 @@ password: !vault |
           32336437343430343263613834663232313139653764383133323734363137396338
 
 # Config settings
-homedir_template: "%H/%U"
-login_shell_template: "/bin/bash"
-assume_default_domain: "True"
-require_membership_of: '"HARLANDCLARKE\\aix_admins" "HARLANDCLARKE\\aix_admin_val"'
-space_replacement: "_"
-ou: "Unix"
+pb_homedir_template: "%H/%U"
+pb_login_shell_template: "/bin/bash"
+pb_assume_default_domain: "True"
+pb_require_membership_of: '"HARLANDCLARKE\\aix_admins" "HARLANDCLARKE\\aix_admin_val"'
+pb_space_replacement: "_"
+pb_ou: "Unix"
+pb_config_path: /tmp
+pb_config_file: pb_dump

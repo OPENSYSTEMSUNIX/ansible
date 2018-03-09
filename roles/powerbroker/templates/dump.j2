@@ -1,0 +1,56 @@
+AllowDeleteTo ""
+AllowReadTo ""
+AllowWriteTo ""
+MaxDiskUsage 104857600
+MaxEventLifespan 90
+MaxNumEvents 100000
+DomainSeparator "\\"
+SpaceReplacement "{{ pb_space_replacement }}"
+EnableEventlog false
+SaslMaxBufSize 16777215
+Providers "ActiveDirectory"
+DisplayMotd false
+PAMLogLevel "error"
+UserNotAllowedError "Access denied"
+AssumeDefaultDomain "{{ pb_assume_default_domain }}"
+CreateHomeDir true
+CreateK5Login true
+SyncSystemTime true
+TrimUserMembership true
+LdapSignAndSeal false
+LogADNetworkConnectionEvents true
+NssEnumerationEnabled true
+NssGroupMembersQueryCacheOnly true
+NssUserMembershipQueryCacheOnly false
+RefreshUserCredentials true
+CacheEntryExpiry 14400
+DomainManagerCheckDomainOnlineInterval 300
+DomainManagerUnknownDomainCacheTimeout 3600
+MachinePasswordLifespan 2592000
+ServicePrincipalName "host"
+MemoryCacheSizeCap 0
+HomeDirForceLowercase false
+HomeDirPrefix "/home"
+HomeDirTemplate "{{ pb_homedir_template }}"
+RemoteHomeDirTemplate ""
+HomeDirUmask "022"
+LoginShellTemplate "{{ pb_login_shell_template }}"
+SkeletonDirs "/etc/skel"
+UserDomainPrefix "{{ pb_domain_netbios }}"
+DomainManagerIgnoreAllTrusts false
+DomainManagerIncludeTrustsList
+DomainManagerExcludeTrustsList
+RequireMembershipOf {% for group in pb_require_membership_of  %}
+"{{ group }}"
+{%- if loop.first %} {% endif %}
+{% endfor %}
+
+Local_AcceptNTLMv1 true
+Local_HomeDirTemplate "%H/%U"
+Local_HomeDirUmask "022"
+Local_LoginShellTemplate "/bin/sh"
+Local_SkeletonDirs "/etc/skel"
+UserMonitorCheckInterval 1800
+LsassAutostart true
+EventlogAutostart true
+BlacklistDC
