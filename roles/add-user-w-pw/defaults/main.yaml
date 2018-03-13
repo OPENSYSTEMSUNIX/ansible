@@ -2,5 +2,4 @@
   aup_name: 'user'
   aup_password: "$6$rounds=656000$fvJnqbZZiZV/t7da$O6u0kcPRg3MRRT/dG5Tr6O1nJK9KY/W4JSZSLMkPuMJJiL6vcWJEgLwwEzhcp8aorUSUsOUMnaCyhm8mWEUMd1"
   aup_comment: ''
-  aup_groups: 'devs'
   aup_shell: '/bin/bash'
