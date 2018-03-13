@@ -17,4 +17,5 @@ Update the root password with the supplied value.
 * Enter the password when prompted. The output will be a hash that is usable for the password varible.
 
 
-### add users to group only when variable has a value
+### todo
+* add users to group only when variable has a value
