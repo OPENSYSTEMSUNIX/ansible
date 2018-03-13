@@ -1,6 +1,6 @@
   - name: add user with a password
     user: 
-      name: '{{ aup_user }}'
+      name: '{{ aup_name }}'
       password: '{{ aup_password }}'
       comment: '{{ aup_comment }}'
       groups: '{{ aup_groups }}'
