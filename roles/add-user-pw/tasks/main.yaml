@@ -14,7 +14,7 @@
     when: au_password is undefined
 
   - name: check if group exists
-    shell: "grep -q '{{ au_optgroup }}' /etc/group | cut -f1 -d:"
+    shell: "grep '{{ au_optgroup }}' /etc/group | cut -f1 -d:"
     ignore_errors: True
     register: etc_groups
     when: au_optgroup is defined
@@ -24,5 +24,5 @@
       name: '{{ au_name }}' 
       groups: '{{ au_optgroup }}'
       append: yes
-    when: '"{{ au_optgroup }}" in etc_groups.stout.lines'
+    when: au_optgroup in etc_groups.stout.lines
     notify: chown
