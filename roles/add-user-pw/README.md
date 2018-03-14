@@ -3,9 +3,9 @@
 Update the root password with the supplied value.
 
 ### Variables
-| vaiable | vaule | required | comment |
+| vaiable | value | required | comment |
 |---------|-------|----------| --------|
-| `au_password:`| *< hash of password >* | no | |
+| `au_password:`| "$6$rounds=656000$NdiU.....g0JeWZKj50" | no | |
 | `au_name:` | *< username >* | yes | |
 | `au_shell:` | /bin/bash | no | default shell |
 | `au_comment:` | "user comment" | yes | |
