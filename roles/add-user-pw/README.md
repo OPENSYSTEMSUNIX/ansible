@@ -3,13 +3,13 @@
 Update the root password with the supplied value.
 
 ### Variables
-| vaiable | vaule |
-|---------|-------|
-| `au_password:`| hash of password |
-| `au_name:` | username |
-| `au_shell:` | default shell (/bin/bash) |
-| `au_comment:` | user comment |
-| `au_optgroup:` | secondary group |
+| vaiable | vaule | required | comment |
+|---------|-------|----------| --------|
+| `au_password:`| hash of password | no | |
+| `au_name:` | username | yes | |
+| `au_shell:` | /bin/bash | no | defeault shell |
+| `au_comment:` | user comment | yes | |
+| `au_optgroup:` | secondary group | no | secondary group to add user to on solaris and aix |
 
 ### how to generate passwords
 
