@@ -17,7 +17,7 @@
     shell: grep -q '{{ au_optgroup }}' /etc/group
     ignore_errors: True
     register: etc_groups
-    when: au_optgroup is defined
+    when: au_optgroup is defined and au_optgroup != ''
 
   - name: add secondary groups to user
     user: 
