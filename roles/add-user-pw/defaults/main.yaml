@@ -1,0 +1,6 @@
+---
+  au_name: 'user'
+  au_password: "$6$rounds=656000$fvJnqbZZiZV/t7da$O6u0kcPRg3MRRT/dG5Tr6O1nJK9KY/W4JSZSLMkPuMJJiL6vcWJEgLwwEzhcp8aorUSUsOUMnaCyhm8mWEUMd1"
+  au_comment: ''
+  au_shell: '/bin/bash'
+  au_optgroup:

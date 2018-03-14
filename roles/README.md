@@ -6,7 +6,7 @@ Each role should have it's own name space to prevent over riding. The name space
 ### add-sudoers
 | namespace | example |
 |-----------|---------|
-| `sudo_` | sudoers_cfg_file |
+| `sudo` | sudoers_cfg_file |
 
 ### add-user
 | namespace |example |

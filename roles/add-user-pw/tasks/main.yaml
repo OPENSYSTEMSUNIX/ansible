@@ -1,0 +1,28 @@
+  - name: add user with a password
+    user: 
+      name: '{{ au_name }}'
+      password: '{{ au_password }}'
+      comment: '{{ au_comment }}'
+      shell: '{{ au_shell }}'
+    when: au_password is defined
+
+  - name: add user without password
+    user: 
+      name: '{{ au_name }}'
+      comment: '{{ au_comment }}'
+      shell: '{{ au_shell }}'
+    when: au_password is undefined
+
+  - name: check if group exists
+    shell: grep -q '{{ au_optgroup }}' /etc/group
+    ignore_errors: True
+    register: etc_groups
+    when: au_optgroup is defined
+
+  - name: add secondary groups to user
+    user: 
+      name: '{{ au_name }}' 
+      groups: '{{ au_optgroup }}'
+      append: yes
+    when: etc_groups.rc == 0
+    notify: chown

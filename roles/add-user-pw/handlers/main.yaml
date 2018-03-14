@@ -1,0 +1,3 @@
+---
+  - name: chown
+    shell: chown -R '{{ au_user }}':'{{ au_optgroup }}' /home/'{{ au_user }}'
