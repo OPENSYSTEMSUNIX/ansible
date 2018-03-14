@@ -8,7 +8,7 @@ Update the root password with the supplied value.
 | `au_password:`| hash of password | no | |
 | `au_name:` | username | yes | |
 | `au_shell:` | /bin/bash | no | default shell |
-| `au_comment:` | user comment | yes | |
+| `au_comment:` | "user comment" | yes | |
 | `au_optgroup:` | secondary group | no | secondary group to add user to on solaris and aix |
 
 ### how to generate passwords
