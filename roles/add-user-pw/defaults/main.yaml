@@ -1,0 +1,6 @@
+---
+  au_name: 'user'
+  au_password: 
+  au_comment: ''
+  au_shell: '/bin/bash'
+  au_optgroup:
