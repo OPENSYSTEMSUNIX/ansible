@@ -4,6 +4,8 @@
       password: '{{ au_password }}'
       comment: '{{ au_comment }}'
       shell: '{{ au_shell }}'
+      uid: '{{ item }}'
+    with_sequence: start=5000 end=5099
     when: au_password is defined
 
   - name: add user without password
@@ -11,6 +13,8 @@
       name: '{{ au_name }}'
       comment: '{{ au_comment }}'
       shell: '{{ au_shell }}'
+      uid: '{{ item }}'
+    with_sequence: start=5000 end=5099
     when: au_password is undefined
 
   - name: check if group exists
