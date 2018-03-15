@@ -1,20 +1,18 @@
   - name: add user with a password
-    user: 
+    user:
       name: '{{ au_name }}'
       password: '{{ au_password }}'
       comment: '{{ au_comment }}'
       shell: '{{ au_shell }}'
-      uid: '{{ item }}'
-    with_sequence: start=5000 end=5099
+      uid: '{{ au_uid }}'
     when: au_password is defined
 
   - name: add user without password
-    user: 
+    user:
       name: '{{ au_name }}'
       comment: '{{ au_comment }}'
       shell: '{{ au_shell }}'
-      uid: '{{ item }}'
-    with_sequence: start=5000 end=5099
+      uid: '{{ au_uid }}'
     when: au_password is undefined
 
   - name: check if group exists
@@ -24,8 +22,8 @@
     when: au_optgroup is defined
 
   - name: add secondary groups to user
-    user: 
-      name: '{{ au_name }}' 
+    user:
+      name: '{{ au_name }}'
       groups: '{{ au_optgroup }}'
       append: yes
     when: au_optgroup in etc_groups.stdout_lines

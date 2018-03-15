@@ -2,6 +2,6 @@
  - hosts: all
    become: yes
    roles:
-       - add-user
+       - add-user-pw
        - add-sudoer
        - copy-sshkey
