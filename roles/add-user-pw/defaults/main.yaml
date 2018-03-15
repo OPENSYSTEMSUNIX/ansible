@@ -4,3 +4,4 @@
   au_comment: ''
   au_shell: '/bin/bash'
   au_optgroup:
+  au_uid:
