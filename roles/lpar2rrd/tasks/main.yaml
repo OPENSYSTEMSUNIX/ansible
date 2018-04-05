@@ -2,7 +2,7 @@
   - name: import gpg key
     rpm_key:
       state: present
-      key: '{{ lpar-key }}'
+      key: '{{ lpar_key }}'
 
   - name: install lpar2rrd rpm
     yum:
@@ -18,4 +18,4 @@
     cron:
       name: "send metrics to lpar2rrd"
       user: lpar2rrd
-      job: "/usr/bin/perl /opt/lpar2rrd-agent/lpar2rrd-agent.pl {{ lpar-host }} > /var/tmp/lpar2rrd-agent.out 2>&1"
+      job: "/usr/bin/perl /opt/lpar2rrd-agent/lpar2rrd-agent.pl {{ lpar_host }} > /var/tmp/lpar2rrd-agent.out 2>&1"
