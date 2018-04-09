@@ -22,6 +22,7 @@ pb_space_replacement: "_"
 pb_ou: 
 pb_config_path: /tmp
 pb_config_file: pb_dump
+pb_user_denied_msg: "Missing group membership please contact opensystemsunix@harlandclarke.com"
 
 # gpg key
 pb_key: http://sa1x-spacewalk-p1/pub/gpg/RPM-GPG-KEY-pbis
