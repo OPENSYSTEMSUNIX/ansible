@@ -1,0 +1,6 @@
+  - name: over write resolv.conf
+    template:
+      src: 'resolv.j2'
+      dest: '{{ rs_conf_dir }}/{{ rs_conf_file }}'
+      mode: '{{ rs_perms }}'
+    tags: resolv

@@ -1,0 +1,9 @@
+#This file is managed by ansible 
+#All manual changes will be overwritten
+#opensystemsunix@harlandclarke.com
+
+{% for rs_name_server in rs_name_servers %}
+nameserver {{ rs_name_server }}
+{% endfor %}
+
+search {{ rs_search_doms | join(" ") }}
