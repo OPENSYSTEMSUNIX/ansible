@@ -1,0 +1,25 @@
+#This file is managed by ansible 
+#All manual changes will be overwritten
+#opensystemsunix@harlandclarke.com
+
+passwd:     {{ ns_passwd | join(" ") }}
+shadow:     {{ ns_shadow | join(" ") }}
+group:      {{ ns_group | join(" ") }}
+
+hosts:      {{ ns_hosts | join(" ") }}
+
+bootparams: nisplus [NOTFOUND=return] files
+
+ethers:     files
+netmasks:   files
+networks:   files
+protocols:  files
+rpc:        files
+services:   files sss
+
+netgroup:   files sss
+
+publickey:  nisplus
+
+automount:  files
+aliases:    files nisplus
