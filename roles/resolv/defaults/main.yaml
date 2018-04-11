@@ -1,0 +1,11 @@
+rs_conf_dir: /etc
+rs_conf_file: resolv.conf
+rs_perms: 644
+
+#config values
+rs_search_doms: 
+  - harlandclarke.local
+  - hchc.local
+rs_name_servers:
+  - 10.105.104.10
+  - 10.105.104.147

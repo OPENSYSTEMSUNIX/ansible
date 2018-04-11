@@ -11,7 +11,7 @@ SaslMaxBufSize 16777215
 Providers "ActiveDirectory"
 DisplayMotd false
 PAMLogLevel "error"
-UserNotAllowedError "Access denied"
+UserNotAllowedError "{{ pb_user_denied_msg }}"
 AssumeDefaultDomain "{{ pb_assume_default_domain }}"
 CreateHomeDir true
 CreateK5Login true
@@ -40,11 +40,7 @@ UserDomainPrefix "{{ pb_domain_netbios }}"
 DomainManagerIgnoreAllTrusts false
 DomainManagerIncludeTrustsList
 DomainManagerExcludeTrustsList
-RequireMembershipOf {% for group in pb_require_membership_of  %}
-"{{ group }}"
-{%- if loop.first %} {% endif %}
-{% endfor %}
-
+RequireMembershipOf {{ pb_require_membership_of | join(" ") }}
 Local_AcceptNTLMv1 true
 Local_HomeDirTemplate "%H/%U"
 Local_HomeDirUmask "022"

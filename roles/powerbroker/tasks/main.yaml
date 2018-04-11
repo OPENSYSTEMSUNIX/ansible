@@ -1,15 +1,21 @@
 ---
 # tasks file for powerbroker
+  - name: import gpg key
+    rpm_key:
+      state: present
+      key: '{{ pb_key }}'
+    tags: key
+
   - name: install powerbroker from spacewalk
     yum:
       name: pbis-open
       state: latest
-      disable_gpg_check: yes
 
   - name: copy config dump to tmp dir
     template:
       src: dump.j2
       dest: "{{ pb_config_path}}/{{ pb_config_file }}"
+    tags: config_file
 
   - name: import powerbroker config
     command: /opt/pbis/bin/config --file "{{ pb_config_path}}/{{ pb_config_file }}"

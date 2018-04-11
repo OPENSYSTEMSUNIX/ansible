@@ -1,0 +1,19 @@
+ns_conf_dir: /etc
+ns_conf_file: nsswitch.conf
+ns_perms: 644
+
+#config values
+ns_passwd: 
+  - lsass 
+  - sss 
+  - files
+ns_group:
+  - lsass 
+  - sss 
+  - files
+ns_shadow:
+  - sss 
+  - files
+ns_hosts:
+  - dns
+  - files

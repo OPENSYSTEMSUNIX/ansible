@@ -2,12 +2,7 @@
 
 ### variables
 
-| variable | value|
-|----------|------|
-| `key_user:` | |
-| `key_string:` | "string containing key" # *note|
-
-### notes
-
-\*note <br>
-The newline in the ssh key *MUST* be escaped
+| variable | value| required | comment |
+|----------|------|----------|---------|
+| `key_user:` | | yes |
+| `key_string:` | "string containing key" | yes |The newline in the ssh key *MUST* be escaped |

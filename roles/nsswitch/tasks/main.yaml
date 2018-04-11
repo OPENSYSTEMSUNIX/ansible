@@ -1,0 +1,6 @@
+  - name: over write nsswitch.conf
+    template:
+      src: 'nsswitch.j2'
+      dest: '{{ ns_conf_dir }}/{{ ns_conf_file }}'
+      mode: '{{ ns_perms }}'
+    tags: nsswitch
