@@ -8,8 +8,8 @@ Ansible playbook for deploying PowerBroker Identity Services (PBIS) Open Edition
 
 ### Variables
 
-| variable | value| | required | comment |
-|----------|------| | |
+| variable | value| required | comment |
+|----------|------|----------|---------|
 | `pb_username:` | domain user with granted add/remove computers to the domain  | | |
 | `pb_password:` | password | | |
 | `pb_domain_fqdn:` | Full qualified domain name of your domain | | |
