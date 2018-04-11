@@ -3,7 +3,7 @@
 ### variables
 
 | variable | value| required | comment |
-|----------|------|------------|---------|
+|----------|------|----------|---------|
 | `sudoers_cfg_file:` | /etc/sudoers | yes | |
 | `sudoers_dropin_dir:` | /etc/sudoers.d | yes | |
 | `sudo_file_name:` | "ansible-sudoers" | yes | name of drop in file |
