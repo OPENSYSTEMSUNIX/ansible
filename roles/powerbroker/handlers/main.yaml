@@ -1,0 +1,14 @@
+---
+
+  - name: import config
+    command: /opt/pbis/bin/config --file "{{ pb_config_path}}/{{ pb_config_file }}"
+    register: config
+    failed_when: config.rc == 1
+
+  - name: clean up
+    file:
+      path: "{{ pb_config_path}}/{{ pb_config_file }}"
+      state: absent
+
+  - name: join domain
+    command: /usr/bin/domainjoin-cli join --ou {{ pb_ou }} {{ pb_domain_fqdn }} {{ pb_username }} {{ pb_password }}

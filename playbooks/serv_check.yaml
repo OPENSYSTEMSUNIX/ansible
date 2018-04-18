@@ -1,0 +1,34 @@
+- hosts: all
+  become: yes
+  vars:
+  tasks:
+
+  - name: check disk space
+    assert:
+      that:
+        #first find the mount point
+        #then we check if the space used is higher than our max percent threshold
+        - not {{ item.mount == '/' and ( item.size_available < item.size_total - ( item.size_total|float * 0.7 ) ) }}
+        - not {{ item.mount == '/var' and ( item.size_available < item.size_total - ( item.size_total|float * 0.8 ) ) }}
+      msg: "{{ item.mount }} below threshold"
+    with_items: '{{ ansible_mounts }}'
+    ignore_errors: yes
+    register: output
+    tags: disk
+
+  - name: failed mounts
+    debug: 
+      msg: "{{ output.results | selectattr('failed') | list }}"
+
+  - name: find repo files
+    find:
+      paths: /etc/yum.repos.d/
+      patterns: "*.repo"
+    register: repo_glob
+    tags: repos
+
+  - name: disbale repos
+    command: mv '{{ item.path }}' '{{ item.path }}'.disabled
+    with_items: '{{ repo_glob.files }}'
+    register: files
+    tags: repos
