@@ -11,7 +11,7 @@
 
   - name: add lpar user
     user:
-      name: lpar2rrd
+      name: '{{ lpar_user }}'
       comment: "LPAR2RRD agent user"
 
   - name: setup cronjob

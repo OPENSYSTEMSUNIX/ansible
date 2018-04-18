@@ -1,3 +1,4 @@
 ---
 lpar_host: sa1-nim-p1.harlandclarke.local
 lpar_key: http://sa1x-spacewalk-p1/pub/gpg/RPM-GPG-KEY-lparkey
+lpar_user: lpar2rrd
