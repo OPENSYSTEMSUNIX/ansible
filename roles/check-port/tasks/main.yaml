@@ -1,0 +1,11 @@
+---
+  - name: check remote port
+    wait_for: 
+      host: '{{ r_host }}' 
+      port: '{{ r_port }}'
+      timeout: 1
+    register: r_output
+
+  - name: check output
+    debug:
+      var: r_output
