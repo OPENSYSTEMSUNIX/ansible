@@ -19,6 +19,7 @@
   - name: failed mounts
     debug: 
       msg: "{{ output.results | selectattr('failed') | list }}"
+    tags: disk
 
   - name: find repo files
     find:
