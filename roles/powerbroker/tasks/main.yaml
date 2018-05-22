@@ -12,6 +12,18 @@
       state: latest
     tags: pb_install
 
+  - name: check for centrify groups
+    stat:
+      path: /var/tmp/centrify_grps
+    register: cent_grps 
+    tags: getinfo
+
+  - name: echo groups
+    debug:
+      msg: mygroups '{{ cd_groups.stdout_lines | union(pb_require_membership_of) | join(" ") }}'
+    tags: getinfo
+    when: cent_grps.stat.exists == True
+
   - name: check the domain status
     shell: /opt/pbis/bin/get-status | grep -q "{{ pb_domain_netbios }}"
     ignore_errors: yes

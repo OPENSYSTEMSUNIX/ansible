@@ -1,39 +1,12 @@
----
 - hosts: space
   become: yes
   vars:
     packages:
       - "CentrifyDC"
       - "CentrifyDA"
-  tasks:
-  - name: check os
-    assert:
-      that: 
-        - "ansible_os_family == 'RedHat'"
-        - "ansible_distribution != 'CentOS'"
-
-  - name: check if centrify is installed
-    yum:
-      name: '{{ item }}'
-      state: present
-    register: installed
-    with_items: '{{ packages }}'
-
-  - name: echo installed
-    debug:
-      msg: '{{ installed.results }}'
-
-  - name: get centrify users
-    command: adquery user -n
-    register: ad_users
-
-  - name: get centrify groups
-    shell: adquery group -M | tr " " "_" | tr [:upper:] [:lower:]
-    register: ad_groups
-
-  - name: who is they
-    debug: 
-      msg: '{{ item }}'
-    with_items:
-      - '{{ ad_users.stdout_lines }}'
-      - '{{ ad_groups.stdout_lines }}'
+    pb_require_membership_of:
+       - "t_grp1"
+       - "t_grp2"
+  roles:
+  - remove-centrify
+  - powerbroker

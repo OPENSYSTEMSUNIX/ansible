@@ -1,0 +1,36 @@
+---
+#remove centrify main.yaml
+- name: check os
+  assert:
+    that: 
+      - "ansible_os_family == 'RedHat'"
+      - "ansible_distribution != 'CentOS'"
+
+- name: check if centrify is installed
+  yum:
+    name: '{{ item }}'
+    state: present
+  register: installed
+  with_items: '{{ packages }}'
+  tags: chkinst
+
+- name: echo installed
+  debug:
+    var:  installed.results
+  tags: chkinst
+
+- name: get centrify groups
+  shell: adquery group -M | tr " " "_" | tr [:upper:] [:lower:]
+  register: ad_groups
+  tags: getinfo
+
+- name: copy centrify groups to host
+  template:
+    src: centrify_grps.j2
+    dest: "/var/tmp/centrify_grps"
+  tags: getinfo
+
+- name: get groups
+  command: cat /var/tmp/centrify_grps
+  register: cd_groups
+  tags: getinfo
