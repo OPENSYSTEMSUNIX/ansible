@@ -1,0 +1,34 @@
+---
+# We need sudo for some of the Docker commands.
+sudo: required
+
+env:
+  # Provide a list of OSes we want to use for testing.
+  - distro: centos7
+    init: /usr/lib/systemd/systemd
+    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+  - distro: centos6
+    init: /sbin/init
+    run_opts: ""
+
+# Tell Travis to start Docker when it brings up an environment.
+services:
+  - docker
+
+before_install:
+  # Pull the image from Docker Hub for the OS under test.
+
+script:
+  # Start the container from the image and perform tests.
+  # Create a random file to store the container ID.
+  - container_id=$(mktemp)
+
+  # Run container detached, with our role mounted inside.
+  - 'docker run --detach --volume="${PWD}":/etc/ansible/roles/role_under_test:ro ${run_opts} geerlingguy/docker-${distro}-ansible:latest "${init}" > "${container_id}"'
+
+  # Check the role/playbook's syntax.
+  - >
+    docker exec --tty "$(cat ${container_id})" env TERM=xterm
+    ansible-playbook /etc/ansible/roles/role_under_test/tests/test.yml
+    --syntax-check
+    
