@@ -31,4 +31,3 @@ script:
     docker exec --tty "$(cat ${container_id})" env TERM=xterm
     ansible-playbook /etc/ansible/roles/role_under_test/tests/test.yml
     --syntax-check
-    
