@@ -1,0 +1,4 @@
+---
+ppt_host: sa1-puppet-p1.harlandclarke.local
+ppt_ca_host: puppetca.harlandclarke.local
+ppt_key: http://sa1x-spacewalk-p1.harlandclarke.local/pub/gpg/RPM-GPG-KEY-puppet5

@@ -1,0 +1,27 @@
+---
+# We need sudo for some of the Docker commands.
+sudo: required
+
+env:
+  # Provide a list of OSes we want to use for testing.
+
+# Tell Travis to start Docker when it brings up an environment.
+services:
+  - docker
+
+before_install:
+  # Pull the image from Docker Hub for the OS under test.
+
+script:
+  # Start the container from the image and perform tests.
+
+notifications:
+  # Notify Ansible Galaxy when a role builds successfully.
+
+script:
+  # Check the role/playbook's syntax.
+  - >
+    docker exec --tty "$(cat ${container_id})" env TERM=xterm
+    ansible-playbook /etc/ansible/roles/role_under_test/tests/test.yml
+    --syntax-check
+    

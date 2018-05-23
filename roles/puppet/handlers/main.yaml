@@ -1,0 +1,8 @@
+---
+  - name: copy config
+    template:
+      src: conf.j2
+      dest: /etc/puppetlabs/puppet/puppet.conf
+
+  - name: set puppet to start at boot
+    command: /opt/puppetlabs/bin/puppet resource service puppet ensure=running enable=true
