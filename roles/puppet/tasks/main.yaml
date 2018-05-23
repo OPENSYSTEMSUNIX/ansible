@@ -12,3 +12,4 @@
     notify:
       - copy config
       - set puppet to start at boot
+      - puppet agent force

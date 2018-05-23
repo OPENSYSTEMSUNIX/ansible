@@ -6,3 +6,6 @@
 
   - name: set puppet to start at boot
     command: /opt/puppetlabs/bin/puppet resource service puppet ensure=running enable=true
+
+  - name: puppet agent force
+    command: /opt/puppetlabs/bin/puppet agent -t
