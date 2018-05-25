@@ -1,13 +1,6 @@
 ---
 - hosts: test
   become: yes
-  vars:
-    sudoers_groups: 
-    - "testuser"
-    sudo_file_name: testuser
-    sudo_message: |
-      ## This file is managed by ansible
-      ## temporary root access for Martin Salinas
-      ## To be removed on June 3, 2018
+
   roles:
       - add-sudoer
