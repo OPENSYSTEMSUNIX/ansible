@@ -5,7 +5,4 @@ sudoers_groups:
   - "%aix_admins"
   - "%other_group"
 sudo_file_name: nopasswd
-sudo_message: |
-  ## This file is managed by ansible
-  ## temporary root access for Martin Salinas
-  ## To be removed on June 3, 2018
+sudo_message: ""

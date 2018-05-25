@@ -1,0 +1,6 @@
+- name: removing the specified files
+  file:
+    state: absent
+    path: '{{ item }}'
+  with_items:
+    - '{{ file_path }}'

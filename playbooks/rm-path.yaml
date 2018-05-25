@@ -1,0 +1,8 @@
+---
+- hosts: test
+  become: yes
+  vars:
+    file_path:
+      - '/etc/sudoers.d/testuser'
+  roles:
+      - rm-path
