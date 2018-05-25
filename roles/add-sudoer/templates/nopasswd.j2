@@ -1,5 +1,4 @@
-## This file is managed by ansible
-## Allows people in the following groups to run all commands
+{{ sudo_message }}
 
 {% for group in sudoers_groups %}
 {{group}} ALL=(ALL) NOPASSWD:ALL

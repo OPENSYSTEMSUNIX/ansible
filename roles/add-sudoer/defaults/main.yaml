@@ -5,3 +5,4 @@ sudoers_groups:
   - "%aix_admins"
   - "%other_group"
 sudo_file_name: nopasswd
+sudo_message: ""
