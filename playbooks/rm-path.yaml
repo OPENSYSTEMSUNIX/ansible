@@ -1,7 +1,6 @@
----
-- hosts: all
-  become: yes
-  vars:
-
-  roles:
-      - rm-path
+-
+    hosts: all
+    become: yes
+    vars: null
+    roles:
+        - rm-path

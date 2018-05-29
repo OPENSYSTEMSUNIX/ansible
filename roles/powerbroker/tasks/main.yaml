@@ -47,3 +47,8 @@
     failed_when: requiremembership.rc == 1
     when: pb_require_membership_of is defined
     tags: pb_memb
+
+#  - name: debug password
+#    debug:
+#      var: pb_password
+#    tags: pb_pass

@@ -1,12 +1,12 @@
-- hosts: space
-  become: yes
-  vars:
-    packages:
-      - "CentrifyDC"
-      - "CentrifyDA"
-    pb_require_membership_of:
-       - "t_grp1"
-       - "t_grp2"
-  roles:
-  - remove-centrify
-#  - powerbroker
+-
+    hosts: space
+    become: yes
+    vars:
+        packages:
+            - CentrifyDC
+            - CentrifyDA
+        pb_require_membership_of:
+            - t_grp1
+            - t_grp2
+    roles:
+        - remove-centrify
