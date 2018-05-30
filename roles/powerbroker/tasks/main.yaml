@@ -48,7 +48,7 @@
     when: pb_require_membership_of is defined
     tags: pb_memb
 
-#  - name: debug password
-#    debug:
-#      var: pb_password
-#    tags: pb_pass
+  - name: debug password
+    debug:
+      var: pb_password
+    tags: pb_pass

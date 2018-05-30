@@ -1,6 +1,6 @@
 # add-sudoers
 
-### variables
+## variables
 
 | variable | value| required | comment |
 |----------|------|----------|---------|
