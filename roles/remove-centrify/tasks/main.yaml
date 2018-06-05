@@ -2,8 +2,7 @@
     - name: check os
       assert:
         that: 
-          - ansible_os_family == 'Redhat' or 
-            ansible_os_family == 'Debian'
+          - ansible_os_family == 'RedHat'
           - "ansible_distribution != 'CentOS'"
       tags: get_os
 
@@ -13,11 +12,6 @@
         state: present
       register: installed
       with_items: '{{ packages }}'
-      tags: chkinst
-
-    - name: echo installed
-      debug:
-        var:  installed.results
       tags: chkinst
 
     - name: get centrify groups
@@ -31,7 +25,18 @@
         dest: "/var/tmp/centrify_grps"
       tags: getinfo
 
-    - name: get groups
-      command: cat /var/tmp/centrify_grps
-      register: cd_groups
-      tags: getinfo
+    - name: leave domain
+      command: adleave --remove -u '{{ pb_username }}' -p '{{ pb_password }}'
+      register: adleave_out
+
+    - name: check password
+      debug:
+        var: pb_password
+      tags: pschk
+
+    - name: remove centrify rpms
+      yum:
+        name: '{{ item }}'
+        state: absent
+      with_items: '{{ packages }}'
+      tags: chkinst
