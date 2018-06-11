@@ -2,7 +2,6 @@
 
 ### ansible roles
 
-
 ## name spaces
 Each role should have it's own name space to prevent over riding. The name space is prepended to the beginnging of the variable names for the roles. *This conversion is still in process...*
 
