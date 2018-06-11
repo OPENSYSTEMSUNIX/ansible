@@ -3,7 +3,7 @@
       assert:
         that: 
           - ansible_os_family == 'RedHat'
-          - "ansible_distribution != 'CentOS'"
+          - ansible_distribution != 'CentOS'
       tags: get_os
 
     - name: check if centrify is installed
@@ -26,13 +26,13 @@
       tags: getinfo
 
     - name: leave domain
-      command: adleave --remove -u '{{ pb_username }}' -p '{{ pb_password }}'
-      register: adleave_out
+      command: adleave --remove -u {{ pb_username }} -p {{ pb_password }}
+      no_log: true
 
-    - name: check password
-      debug:
-        var: pb_password
-      tags: pschk
+#    - name: check password
+#      debug:
+#        msg: "adleave --remove -u {{ pb_username }} -p {{ pb_password }}"
+#      tags: pschk
 
     - name: remove centrify rpms
       yum:

@@ -12,3 +12,4 @@
 
   - name: join domain
     command: /usr/bin/domainjoin-cli join --ou {{ pb_ou }} {{ pb_domain_fqdn }} {{ pb_username }} {{ pb_password }}
+    no_log: true

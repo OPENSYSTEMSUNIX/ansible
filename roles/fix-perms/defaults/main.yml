@@ -1,0 +1,5 @@
+---
+# defaults file for fix-perms
+fx_file: ''
+fx_owner: ''
+fx_group: ''
