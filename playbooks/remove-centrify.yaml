@@ -2,8 +2,6 @@
     hosts: all
     become: yes
     vars:
-        packages:
-            - CentrifyDC
-            - CentrifyDA
+
     roles:
         - remove-centrify

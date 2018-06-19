@@ -7,11 +7,8 @@
       tags: get_os
 
     - name: check if centrify is installed
-      yum:
-        name: '{{ item }}'
-        state: present
-      register: installed
-      with_items: '{{ packages }}'
+      shell: rpm -qa | grep -i centrify
+      register: inst
       tags: chkinst
 
     - name: get centrify groups
@@ -28,15 +25,9 @@
     - name: leave domain
       command: adleave --remove -u {{ pb_username }} -p {{ pb_password }}
       no_log: true
+      tags: leavedom
 
-#    - name: check password
-#      debug:
-#        msg: "adleave --remove -u {{ pb_username }} -p {{ pb_password }}"
-#      tags: pschk
-
-    - name: remove centrify rpms
-      yum:
-        name: '{{ item }}'
-        state: absent
-      with_items: '{{ packages }}'
-      tags: chkinst
+    - name: remove centrify
+      command: rpm -e --nodeps {{ item }}
+      with_items: '{{ inst.stdout_lines }}'
+      tags: rm
