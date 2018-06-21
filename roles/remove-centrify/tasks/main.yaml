@@ -9,6 +9,7 @@
     - name: check if centrify is installed
       shell: rpm -qa | grep -i centrify
       register: inst
+      failed_when: inst.stdout == ''
       tags: chkinst
 
     - name: get centrify groups

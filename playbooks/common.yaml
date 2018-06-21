@@ -1,24 +1,13 @@
--
-    hosts: all
-    become: yes
-    roles:
-# ansible svc account
-        - add-user-pw 
-        - add-sudoer
-        - copy-sshkey
-# rhg-reg 
-#        - rhn-reg
-# install/configure powerbroker and join domain 
-        - nsswitch
-        - resolv
-        - powerbroker
-        - add-sudoer
-# install and configure lpar2rrd tool/user
-        - check-port
-        - lpar2rrd
-# add service now account
-        - add-user-pw
-        - add-sudoer
-# add nessus account
-        - add-user-pw
-        - add-sudoer
+---
+    #ansiblesvc
+    #- import_playbook: add-user-w-key.yaml
+    #rhn_reg
+    # - import_playbook: rhn_reg.yaml
+    #powerbroker
+    - import_playbook: install-powerbroker.yaml
+    #lpar2rrd
+    - import_playbook: install-lpar2rrd.yaml
+    #svcnwadm
+    #- import_playbook: svcnwadm.yaml
+    #nessxsvc
+    #- import_playbook: nessxsvc.yaml
