@@ -28,6 +28,11 @@
       no_log: true
       tags: leavedom
 
+    - name: check vars
+      debug:
+        var: pb_password
+      tags: varchk
+
     - name: remove centrify
       command: rpm -e --nodeps {{ item }}
       with_items: '{{ inst.stdout_lines }}'
