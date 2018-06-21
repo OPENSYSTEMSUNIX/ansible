@@ -30,7 +30,7 @@
 
     - name: check vars
       debug:
-        var: pb_password
+        msg: "adleave --remove -u {{ pb_username }} -p {{ pb_password }}"
       tags: varchk
 
     - name: remove centrify
