@@ -25,7 +25,7 @@
 
     - name: leave domain
       command: adleave --remove -u {{ pb_username }} -p {{ pb_password }}
-      no_log: true
+#      no_log: true
       tags: leavedom
 
     - name: check vars
