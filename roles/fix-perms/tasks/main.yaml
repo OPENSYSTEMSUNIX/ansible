@@ -1,25 +1,22 @@
 ---
 # tasks file for fix-perms
-- name: find the files first
-  find: 
-    paths: "/tmp/"
-  register: filez
+- name: find files in /home starting with a
+  find:
+    paths: /home
+    patterns: 'a\d+'
+    file_type: directory
+    use_regex: yes
+  register: dirs
 
-- debug:
-    var: '{{ item }}'
-  with_items: filez.files.path
+- name: debug
+  debug:
+    msg: 'chown {{ item.path }} {{ item.path | replace("/home/", "") }}'
+  with_items: '{{ dirs.files }}'
 
-#- name: find files owned by user 
-#  stat:
-#    path: /tmp/*
-#  register: st_out
 
-#- debug:
-#    var: st_out.stat.path
-#  when: st_out.stat.pw_name == fx_owner
-
-- name: fix file perms
-  file:
-    path: '{{ fx_file }}'
-    owner: '{{ fx_owner }}'
-    group: '{{ fx_group }}'
+#- name: fix file perms
+#  file:
+#    path: '{{ fx_file }}'
+#    owner: '{{ fx_owner }}'
+#    group: '{{ fx_group }}'
+#  recursive: yes
