@@ -1,0 +1,13 @@
+---
+    #ansiblesvc
+    #- import_playbook: add-user-w-key.yaml
+    #rhn_reg
+    # - import_playbook: rhn_reg.yaml
+    #powerbroker
+    - import_playbook: install-powerbroker.yaml
+    #lpar2rrd
+    - import_playbook: install-lpar2rrd.yaml
+    #svcnwadm
+    #- import_playbook: svcnwadm.yaml
+    #nessxsvc
+    #- import_playbook: nessxsvc.yaml
